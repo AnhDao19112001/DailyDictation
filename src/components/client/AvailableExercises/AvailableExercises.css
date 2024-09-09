@@ -1,0 +1,120 @@
+.available-exercises {
+    padding: 20px 0 70px 0;
+    background-color: #f7f8fa;
+    text-align: center;
+}
+
+.available-exercises h2 {
+    font-size: 2.8em;
+    margin-bottom: 40px;
+    color: #2c3e50;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.available-exercises .intro-text {
+    font-size: 1.2em;
+    margin-bottom: 40px;
+    color: #7f8c8d;
+    max-width: 750px;
+    margin: 0 auto;
+    margin-bottom: 50px;
+}
+
+.exercise-columns {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.exercise-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.exercise-item {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    padding: 25px;
+    text-align: left;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.exercise-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.exercise-item h3 a {
+    color: #0056b3;
+    text-decoration: none;
+    font-size: 1.8em;
+    font-weight: 600;
+    transition: color 0.3s ease-in-out;
+}
+
+.exercise-item h3 a:hover {
+    color: #2c3e50;
+}
+
+.exercise-item p {
+    color: #555555;
+    margin-bottom: 15px;
+    line-height: 1.6;
+    font-size: 1.1em;
+}
+
+.exercise-item ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin-bottom: 20px;
+}
+
+.exercise-item ul li {
+    margin-bottom: 8px;
+}
+
+.exercise-item ul li a {
+    color: #0056b3;
+    text-decoration: none;
+    font-size: 1.1em;
+    transition: color 0.3s ease-in-out;
+}
+
+.exercise-item ul li a:hover {
+    color: #2c3e50;
+}
+
+.view-all {
+    display: inline-block;
+    color: #0056b3;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 15px;
+    font-size: 1.2em;
+    transition: color 0.3s ease-in-out;
+}
+
+.view-all:hover {
+    color: #2c3e50;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .exercise-columns {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .exercise-column {
+        flex: 1 1 100%;
+    }
+
+    .exercise-item {
+        padding: 20px;
+    }
+}

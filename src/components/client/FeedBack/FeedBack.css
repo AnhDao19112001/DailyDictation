@@ -1,0 +1,138 @@
+/* Testimonials Section */
+.testimonials {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #f0f0f0 0%, #e9e9e9 100%);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.testimonials::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.5);
+    transform: translateX(-50%) rotate(45deg);
+    z-index: 0;
+    opacity: 0.2;
+}
+
+.testimonials h2 {
+    font-size: 3em;
+    margin-bottom: 40px;
+    color: #333333;
+    font-weight: 700;
+    letter-spacing: 2px;
+    position: relative;
+    z-index: 1;
+}
+
+.swiper-container {
+    width: 90%;
+    margin-left: 5%;
+    position: relative;
+    z-index: 1;
+}
+
+.testimonial-item {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+    transition: transform 0.4s, box-shadow 0.4s;
+}
+
+.testimonial-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 100;
+}
+
+.testimonial-item p {
+    font-size: 1.4em;
+    color: #555555;
+    margin-bottom: 20px;
+    line-height: 1.8;
+    font-style: italic;
+    position: relative;
+}
+
+.testimonial-item p::before {
+    content: "“";
+    font-size: 4em;
+    color: #e67e22;
+    position: absolute;
+    top: -30px;
+    left: -40px;
+    opacity: 0.1;
+    z-index: -1;
+}
+
+.testimonial-item span {
+    font-size: 1.2em;
+    color: #999999;
+    font-weight: 600;
+}
+
+.swiper-android ::slotted(swiper-slide),
+.swiper-ios ::slotted(swiper-slide),
+.swiper-wrapper {
+    padding: 10px 0 !important;
+}
+
+.testimonials .swiper {
+    width: 100%;
+    height: 100%;
+    padding: 10px 0;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+
+    /* Center slide text vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Swiper Navigation Arrows */
+.swiper-button-next,
+.swiper-button-prev {
+    color: #333333;
+    transition: color 0.3s;
+    font-size: 1.5em;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+    color: #e67e22;
+}
+
+/* Swiper Pagination */
+.swiper-pagination-bullet {
+    background-color: #333333;
+    opacity: 0.7;
+}
+
+.swiper-pagination-bullet-active {
+    background-color: #e67e22;
+    opacity: 1;
+}

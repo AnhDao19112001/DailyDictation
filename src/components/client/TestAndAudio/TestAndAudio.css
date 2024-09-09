@@ -1,0 +1,360 @@
+/* Breadcrumb Styles */
+.title-test {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.setting {
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.setting i {
+    margin-right: 8px;
+}
+
+.breadcrumb-container {
+    width: 100%;
+    background-color: #fff;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
+.breadcrumb-container nav {
+    font-size: 0.9rem;
+}
+
+.breadcrumb-container nav a {
+    color: #007bff;
+    text-decoration: none;
+    margin-right: 5px;
+}
+
+.breadcrumb-container nav a:hover {
+    text-decoration: underline;
+}
+
+.breadcrumb-container nav a::after {
+    content: ">";
+    margin-left: 5px;
+    color: #999;
+}
+
+.breadcrumb-container nav a:last-child::after {
+    content: "";
+}
+
+/* Main Content Container */
+.main-container {
+    width: 100%;
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
+/* Audio Player Styles */
+.audio-container {
+    background-color: #f9f9f9;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.audio-controls {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.audio-button {
+    font-size: 1.5rem;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.waveform {
+    flex-grow: 1;
+    height: 50px;
+    background-color: #eee;
+}
+
+.speed-button {
+    background-color: #f1f1f1;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px 15px;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+textarea {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    resize: none;
+    font-size: 1rem;
+    margin-right: 10px;
+}
+
+.microphone-button {
+    font-size: 1.5rem;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.check-button,
+.skip-button {
+    padding: 12px 25px;
+    font-size: 1rem;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.check-button {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.check-button:hover {
+    background-color: #0056b3;
+}
+
+.skip-button {
+    background-color: #f1f1f1;
+    color: #333;
+    border: 1px solid #ddd;
+}
+
+.skip-button:hover {
+    background-color: #e1e1e1;
+}
+
+/* Tips and Links Section */
+.tips-and-links {
+    margin-top: 30px;
+}
+
+.tip {
+    display: flex;
+    align-items: center;
+    background-color: #fffbcc;
+    padding: 15px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    font-size: 1rem;
+    color: #555;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.tip i {
+    color: #ffc107;
+    margin-right: 10px;
+    font-size: 1.5rem;
+}
+
+.refresh-button {
+    margin-left: auto;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: #007bff;
+    transition: transform 0.3s ease;
+}
+
+.refresh-button:hover {
+    transform: rotate(180deg);
+}
+
+.accordion {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.accordion-item {
+    border-bottom: 1px solid #ddd;
+}
+
+.accordion-item:last-child {
+    border-bottom: none;
+}
+
+.accordion-header {
+    padding: 15px;
+    background-color: #f8f9fa;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.accordion-header:hover {
+    background-color: #f1f1f1;
+}
+
+.accordion-content {
+    padding: 15px;
+    display: none;
+    background-color: #fff;
+}
+
+.accordion-header i {
+    transition: transform 0.3s ease;
+}
+
+.accordion-header.active i {
+    transform: rotate(180deg);
+}
+
+.accordion-header.active+.accordion-content {
+    display: block;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .main-container {
+        padding: 20px;
+    }
+
+    .title-test h1 {
+        font-size: 1.5rem;
+    }
+
+    .audio-controls,
+    .input-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .audio-button,
+    .microphone-button {
+        margin-bottom: 10px;
+    }
+
+    .speed-button {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+
+    .check-button,
+    .skip-button {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* Modal */
+.modal-setting {
+    width: 480px;
+}
+
+.modal-setting .modal-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 24px;
+    margin: 10px 0 16px;
+}
+
+.modal-setting .modal-title h4 {
+    margin: 0;
+}
+
+.modal-setting .modal-title i {
+    margin-right: 6px;
+}
+
+.modal-setting .modal-title button {
+    font-size: 26px;
+    background: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.modal-setting table {
+    width: 480px;
+    border-collapse: collapse;
+}
+
+.modal-setting table td,
+th {
+    border: 1px solid #ddd;
+    padding: 12px 10px;
+}
+
+.modal-setting table th {
+    display: flex;
+    justify-content: center;
+}
+
+
+
+.modal-setting .custom-select {
+    display: block;
+    width: 110px;
+    text-align: center;
+    padding: 0.375rem 1.75rem 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.375rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27%3e%3cpath fill=%27none%27 stroke=%27%23343a40%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27 stroke-width=%272%27 d=%27m2 5 6 6 6-6%27/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 16px 12px;
+}
+
+.modal-setting .custom-select:focus {
+    border-color: #86b7fe;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+/* Modal end */

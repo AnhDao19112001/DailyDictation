@@ -1,0 +1,147 @@
+/* Dictations Section */
+.dictations {
+    background: linear-gradient(135deg, #f0f0f0, #ffffff);
+    padding: 80px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.dictations::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: 50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle,
+            rgba(243, 156, 18, 0.1) 0%,
+            rgba(243, 156, 18, 0) 70%);
+    z-index: 0;
+    transform: translate(-50%, -50%);
+}
+
+.dictations h2 {
+    font-size: 2.8em;
+    margin-bottom: 10px;
+    color: #2c3e50;
+    position: relative;
+    z-index: 2;
+}
+
+.dictations .intro-text {
+    font-size: 1.2em;
+    margin-bottom: 40px;
+    color: #7f8c8d;
+    position: relative;
+    z-index: 2;
+}
+
+.dictation-list {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 30px;
+    position: relative;
+    z-index: 2;
+}
+
+.dictation-item {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    max-width: 100%;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.dictation-item::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right,
+            rgba(243, 156, 18, 0.1),
+            rgba(243, 156, 18, 0));
+    transform: skewX(-20deg);
+    transition: left 0.5s ease;
+    z-index: 0;
+}
+
+.dictation-item:hover::before {
+    left: 100%;
+}
+
+.dictation-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.dictation-content {
+    position: relative;
+    z-index: 1;
+}
+
+.dictation-item h4 {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    color: #2980b9;
+    transition: color 0.3s;
+    position: relative;
+    z-index: 1;
+}
+
+.dictation-item p {
+    font-size: 1.1em;
+    margin-bottom: 20px;
+    color: #7f8c8d;
+    position: relative;
+    z-index: 1;
+}
+
+.dictation-item .btn {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: #f39c12;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 25px;
+    font-size: 1em;
+    transition: background-color 0.3s, transform 0.3s;
+    align-self: flex-start;
+    position: relative;
+    z-index: 1;
+}
+
+.dictation-item .btn:hover {
+    background-color: #e67e22;
+    transform: scale(1.05);
+}
+
+@media (max-width: 1024px) {
+    .dictation-list {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .dictation-item {
+        max-width: 80%;
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .dictation-item {
+        max-width: 100%;
+        padding: 20px;
+    }
+}

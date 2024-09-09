@@ -1,0 +1,212 @@
+.auth-body {
+    font-family: "Roboto", sans-serif;
+    background: linear-gradient(135deg, #74ebd5 0%, #9face6 100%);
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.auth-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.auth-container {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    box-sizing: border-box;
+    transition: transform 0.4s ease-in-out;
+}
+
+.auth-box {
+    width: 100%;
+    text-align: center;
+}
+
+.tabs {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.tab-button {
+    flex: 1;
+    padding: 12px 0;
+    background-color: #f1f1f1;
+    color: #000;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border-radius: 5px 5px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-decoration: none;
+}
+
+.tab-button.active {
+    background-color: #007bff;
+    color: white;
+    border-bottom: 2px solid #007bff;
+}
+
+.tab-button i {
+    font-size: 18px;
+}
+
+.form-container {
+    position: relative;
+    width: 100%;
+}
+
+.form {
+    display: block;
+    text-align: left;
+    padding: 0 10px;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+h2 {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 24px;
+    text-align: center;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 14px;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input-group input:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.auth-body .btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-top: 20px;
+    text-decoration: none;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.social-login {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.social-login p {
+    margin: 10px 0;
+    color: #555;
+}
+
+.btn-social {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-social i {
+    margin-right: 8px;
+    font-size: 18px;
+}
+
+.google {
+    background-color: #db4437;
+    color: #fff;
+}
+
+.google:hover {
+    background-color: #c23321;
+}
+
+.facebook {
+    background-color: #4267b2;
+    color: #fff;
+}
+
+.facebook:hover {
+    background-color: #365899;
+}
+
+@media (max-width: 480px) {
+    .auth-container {
+        padding: 15px;
+    }
+
+    .tab-button {
+        font-size: 14px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+}
