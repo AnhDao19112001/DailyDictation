@@ -1,11 +1,36 @@
-import { Link } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import "./TestAndAudio.css"
 import Setting from "./Setting";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getExerciseById } from "../../../services/exercisesService";
+import { getTopicById } from "../../../services/topicService";
+import { getTipByIdExercise } from "../../../services/tipService";
 const TestAndAudio = () => {
     const [modalIsOpen, setIsOpen] = useState(false);
     const openModal = () => {
         setIsOpen(true);
+    }
+    const { idExercise } = useParams();
+    const [topic, setTopic] = useState({});
+    const [exercise, setExercise] = useState({});
+    const [tip, setTip] = useState({});
+    const fetchApi = async () => {
+        const exercise = await getExerciseById(idExercise);
+        setExercise(exercise[0]);
+        const topic = await getTopicById(exercise[0].topicId);
+        setTopic(topic[0]);
+        const tip = await getTipByIdExercise(exercise[0].id);
+        setTip(tip);
+    }
+    useEffect(() => {
+        fetchApi();
+    }, [])
+    function capitalizeFirstLetter(string) {
+        if (!string) return '';
+        return string
+            .split(' ')
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(' ');
     }
     return (
         <>
@@ -13,13 +38,12 @@ const TestAndAudio = () => {
             <main>
                 <div className="breadcrumb-container">
                     <nav>
-                        <Link href="#">All topics</Link> / <a href="#">Short Stories</a> / 1. First
-                        snowfall (Listen &amp; Type)
+                        <Link to="/all-topics">All topics</Link> / <Link to={`/topic/${topic.id}`}>{capitalizeFirstLetter(topic.name)}</Link>/ 1. {exercise.title} (Listen &amp; Type)
                     </nav>
                 </div>
                 <div className="container">
                     <div className="title-test">
-                        <h1>1. First snowfall (Listen and Type)</h1>
+                        <h1>{exercise.title} (Listen and Type)</h1>
                         <div className="setting" onClick={openModal}>
                             <i className="fa-solid fa-gear"></i>
                             Setting
@@ -50,7 +74,7 @@ const TestAndAudio = () => {
                         <div className="tip">
                             <i className="fas fa-lightbulb" />
                             <span>
-                                If possible, read out loud the sentence after completing it!
+                                {tip.content}
                             </span>
                             <button className="refresh-button">
                                 <i className="fas fa-sync-alt" />

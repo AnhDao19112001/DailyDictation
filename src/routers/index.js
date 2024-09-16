@@ -1,11 +1,12 @@
 import Home from "../pages/client/Home";
-import AllExercies from "../pages/client/AllExercises";
-import Stories from "../pages/client/Stories";
+import AllTopics from "../pages/client/AllTopics";
+import ExerciseTopic from "../pages/client/ExerciseTopic";
 import Login from "../pages/client/Login";
 import Register from "../pages/client/Register";
 import LayoutClient from "../layouts/LayoutClient";
 import LayoutLogin from "../layouts/LayoutLogin";
 import ListenAndType from "../pages/client/Listen&Type";
+import PrivateRouter from "../components/client/PrivateRouter";
 const routers = [
     {
         path: "/",
@@ -16,16 +17,21 @@ const routers = [
                 element: <Home />
             },
             {
-                path: "/all-exercises",
-                element: <AllExercies />,
+                element: <PrivateRouter />,
+                children: [
+                    {
+                        path: "/all-topics",
+                        element: <AllTopics />,
+                    },
+                ]
             },
             {
 
-                path: "/all-exercises/short-stories",
-                element: <Stories />
+                path: "/topic/:idTopic",
+                element: <ExerciseTopic />
             },
             {
-                path: "/topic/short-stories/first-snowfall",
+                path: "/listen-and-type/:idExercise",
                 element: <ListenAndType />
             }
         ]

@@ -54,24 +54,24 @@ header.header h1 {
     letter-spacing: 1px;
 }
 
-.main-nav {
+header.header .main-nav {
     flex: 2;
     display: flex;
     justify-content: center;
 }
 
-.main-nav ul {
+header.header .main-nav ul {
     list-style: none;
     display: flex;
     margin: 0;
     padding: 0;
 }
 
-.main-nav ul li {
+header.header .main-nav ul li {
     margin-left: 20px;
 }
 
-.main-nav ul li a {
+header.header .main-nav ul li a {
     text-decoration: none;
     color: #ecf0f1;
     font-size: 1.1em;
@@ -79,11 +79,11 @@ header.header h1 {
     transition: color 0.3s;
 }
 
-.main-nav ul li a:hover {
+header.header .main-nav ul li a:hover {
     color: #f39c12;
 }
 
-.main-nav ul li a::before {
+header.header .main-nav ul li a::before {
     content: "";
     display: block;
     height: 2px;
@@ -93,19 +93,19 @@ header.header h1 {
     margin-bottom: -4px;
 }
 
-.main-nav ul li a:hover::before {
+header.header .main-nav ul li a:hover::before {
     width: 100%;
 }
 
 /* Login Button Styles */
-.login-nav {
+header.header .login-nav {
     margin-left: auto;
     flex: 1;
     display: flex;
     justify-content: flex-end;
 }
 
-.login-btn {
+header.header .login-btn {
     text-decoration: none;
     background-color: #f39c12;
     color: white;
@@ -115,9 +115,59 @@ header.header h1 {
     transition: background-color 0.3s, transform 0.3s;
 }
 
-.login-btn:hover {
+header.header .login-btn i {
+    margin-right: 8px;
+}
+
+header.header .login-btn:hover {
     background-color: #e67e22;
     transform: translateY(-3px);
+}
+
+header.header .info-user {
+    position: relative;
+    z-index: 1;
+}
+
+header.header .info-user .drop-menu {
+    overflow: hidden;
+    position: absolute;
+    top: 100%;
+    background-color: #fff7ed;
+    width: 120px;
+    padding: 10px;
+    border-radius: 8px;
+    left: 0;
+    opacity: 0;
+    z-index: 9999;
+}
+
+header.header .info-user:hover .drop-menu {
+    opacity: 1;
+}
+
+/* header.header .info-user .drop-menu::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid white;
+} */
+
+header.header .info-user .drop-menu a {
+    color: #000;
+    text-decoration: none;
+    display: block;
+    border-bottom: 1px solid #ddd;
+    padding: 4px 0;
+    font-weight: 600;
+}
+
+header.header .info-user .drop-menu a:hover {
+    color: #00a8ff;
 }
 
 @media (max-width: 1199.98px) {
@@ -165,7 +215,7 @@ header.header h1 {
 }
 
 @media (max-width: 777.98px) {
-    .main-nav ul li {
+    header.header .main-nav ul li {
         margin-left: 18px;
     }
 }
@@ -176,17 +226,17 @@ header.header h1 {
         text-align: center;
     }
 
-    .main-nav ul {
+    header.header .main-nav ul {
         flex-direction: column;
         margin-top: 15px;
     }
 
-    .main-nav ul li {
+    header.header .main-nav ul li {
         margin-left: 0;
         margin-top: 10px;
     }
 
-    .login-nav {
+    header.header .login-nav {
         margin-top: 15px;
     }
 }

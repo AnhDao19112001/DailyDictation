@@ -1,9 +1,9 @@
 import TopicList from "../../../components/client/TopicList"
-const AllExercies = () => {
+const AllTopics = () => {
     return (
         <>
             <TopicList />
         </>
     )
 }
-export default AllExercies
+export default AllTopics;

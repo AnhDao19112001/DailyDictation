@@ -1,13 +1,23 @@
 import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
 import { checkEmailExist, getUser } from "../../../services/userService"
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify'
+import { checkAuthenClient } from "../../../actions/authentication"
+import { getCookie, setCookie } from "../../../helpers/cookie"
+import { useDispatch } from "react-redux";
 import 'react-toastify/dist/ReactToastify.css';
+import { useEffect } from "react"
 const emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
 const Login = () => {
     const { register, handleSubmit } = useForm();
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    useEffect(() => {
+        if (getCookie("token")) {
+            navigate('/')
+        }
+    }, [])
     const onSubmit = async (data) => {
         try {
             if (data.email === "") {
@@ -31,6 +41,9 @@ const Login = () => {
                 return;
             }
             if (result.length) {
+                dispatch(checkAuthenClient(result[0].token));
+                setCookie("token", result[0].token, 1000);
+                setCookie("id", result[0].id)
                 navigate("/")
             }
         } catch (error) {
