@@ -33,7 +33,7 @@ const Login = () => {
                 return;
             }
             if (result.length) {
-                dispatch(authenClientSuccess(result[0].token));
+                dispatch(authenClientSuccess(result[0]));
                 setCookie("token", result[0].token);
                 navigate("/")
             } else {

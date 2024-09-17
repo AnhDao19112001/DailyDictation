@@ -1,24 +1,11 @@
 import { Navigate, Outlet, useNavigate } from "react-router-dom";
-import { getCookie, deleteCookie } from "../../../helpers/cookie";
-import { getUserByToken } from "../../../services/userService";
-import { useEffect } from "react";
+import { useSelector } from "react-redux";
 const PrivateRouter = () => {
-    const token = getCookie("token");
-    const navigate = useNavigate();
-    const fetchApi = async () => {
-        const checkUser = await getUserByToken(token);
-        if (!checkUser.length) {
-            deleteCookie("token")
-            navigate("/login")
-        }
-    }
-    useEffect(() => {
-        fetchApi();
-    }, [])
+    const { isAuthenticated } = useSelector((state) => state.authenReducerClient);
     return (
         <>
             {
-                token ? <Outlet /> : <Navigate to="/login" />
+                isAuthenticated ? <Outlet /> : <Navigate to="/login" />
             }
         </>
     )

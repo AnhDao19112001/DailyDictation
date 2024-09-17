@@ -9,7 +9,7 @@ const AvailableExercises = () => {
         let limit = 8;
         const listTopics = await getListTopicByQuantity(limit);
         for (const topic of listTopics) {
-            const listExercise = await getExerciseByTopicId(topic.id);
+            const listExercise = await getExerciseByTopicId(topic.id, 5);
             topic.exercises = listExercise;
         }
         const array = [];

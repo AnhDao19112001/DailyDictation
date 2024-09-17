@@ -5,7 +5,6 @@ import { authenClientFailure } from "../../actions/authentication";
 const Header = () => {
     const { isAuthenticated, user } = useSelector((state) => state.authenReducerClient);
     const dispatch = useDispatch();
-    console.log(isAuthenticated, user);
     const handleLogout = () => {
         deleteAllCookies();
         dispatch(authenClientFailure());

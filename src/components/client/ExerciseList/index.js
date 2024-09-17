@@ -7,6 +7,7 @@ const ExerciseList = () => {
     const { idTopic } = useParams();
     const [topic, setTopic] = useState({});
     const [exercises, setExercises] = useState([]);
+    const [itemExercise, setItemExercise] = useState([]);
     const fetchApi = async () => {
         const topic = await getTopicById(idTopic);
         const exercises = await getExerciseByTopicId(idTopic);
@@ -16,8 +17,22 @@ const ExerciseList = () => {
 
     useEffect(() => {
         fetchApi();
-    }, [])
-    console.log(topic)
+    }, []);
+    const handleSearch = (e) => {
+        const itemExercise = exercises.filter((item) => {
+            const regex = new RegExp(item.title, 'i');
+            if (regex.test(e.target.value)) {
+                console.log(item);
+            }
+            return regex.test(e.target.value);
+        })
+        if (itemExercise.length) {
+            console.log(itemExercise)
+            setItemExercise(itemExercise)
+        } else {
+            setItemExercise([]);
+        }
+    }
     return (
         <>
             <div className="container short-stories">
@@ -27,18 +42,24 @@ const ExerciseList = () => {
                 <header className="header-stories">
                     <h1>{topic ? topic.name : ""}</h1>
                     <div className="search-bar">
-                        <input type="text" placeholder="Search" />
+                        <input type="text" placeholder="Search" onChange={handleSearch} />
                         <button>OK</button>
                     </div>
                 </header>
                 <main>
                     <ul className="story-list">
                         {
-                            exercises.map((item, index) => (
-                                <li>
-                                    <Link to={`/listen-and-type/${item.id}`}>1. First snowfall</Link>
-                                </li>
-                            ))
+                            itemExercise.length ?
+                                itemExercise.map((item, index) => (
+                                    <li key={index}>
+                                        <Link to={`/listen-and-type/${item.id}`}>{item.title}</Link>
+                                    </li>
+                                )) :
+                                exercises.map((item, index) => (
+                                    <li key={index}>
+                                        <Link to={`/listen-and-type/${item.id}`}>{item.title}</Link>
+                                    </li>
+                                ))
                         }
 
                     </ul>

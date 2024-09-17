@@ -6,7 +6,6 @@ const TopicList = () => {
     const [topicList, setTopicList] = useState([]);
     const fetchApi = async () => {
         const topicList = await getTopicList();
-        console.log(topicList);
         setTopicList(topicList);
     }
     useEffect(() => {

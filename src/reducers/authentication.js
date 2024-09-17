@@ -7,12 +7,14 @@ export const authenReducerClient = (state = initialValueClient, action) => {
         return {
             ...state,
             isAuthenticated: true,
-            user: action.data
+            user: action.status
         };
     }
     else if (action.type === "FAILURE") {
         return {
-            ...state
+            ...state,
+            isAuthenticated: false,
+            user: null
         }
     }
     else {
