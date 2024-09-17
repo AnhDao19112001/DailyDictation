@@ -6,7 +6,7 @@ import Register from "../pages/client/Register";
 import LayoutClient from "../layouts/LayoutClient";
 import LayoutLogin from "../layouts/LayoutLogin";
 import ListenAndType from "../pages/client/Listen&Type";
-import PrivateRouter from "../components/client/PrivateRouter";
+// import PrivateRouter from "../components/client/PrivateRouter";
 const routers = [
     {
         path: "/",
@@ -17,13 +17,10 @@ const routers = [
                 element: <Home />
             },
             {
-                element: <PrivateRouter />,
-                children: [
-                    {
-                        path: "/all-topics",
-                        element: <AllTopics />,
-                    },
-                ]
+
+                path: "/all-topics",
+                element: <AllTopics />,
+
             },
             {
 

@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom"
 import { checkUserExist, getUser } from "../../../services/userService"
 import { ToastContainer, toast } from 'react-toastify'
 import { authenClientFailure, authenClientSuccess } from "../../../actions/authentication"
-import { getCookie, setCookie } from "../../../helpers/cookie"
-import { useDispatch } from "react-redux";
+import { setCookie } from "../../../helpers/cookie"
+import { useDispatch, useSelector } from "react-redux";
 import 'react-toastify/dist/ReactToastify.css';
 import { useEffect } from "react"
 // const emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
@@ -13,8 +13,9 @@ const Login = () => {
     const { register, handleSubmit } = useForm();
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const { isAuthenticated } = useSelector(state => state.authenReducerClient)
     useEffect(() => {
-        if (getCookie("token")) {
+        if (isAuthenticated) {
             navigate('/')
         }
     }, [])

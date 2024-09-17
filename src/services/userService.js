@@ -1,6 +1,6 @@
 import { get, post } from "../utils";
 export const getUser = async (data) => {
-    const result = await post(`users?username=${data.username}&password=${data.password}`);
+    const result = await post(`login`, data);
     return result;
 }
 export const getUserById = async (id) => {
@@ -25,6 +25,6 @@ export const checkUserExist = async (data) => {
     return result;
 }
 export const createUser = async (option) => {
-    const result = await post(`users`, option);
+    const result = await post(`register`, option);
     return result;
 }

@@ -12,7 +12,7 @@ const TopicItem = (props) => {
                             />
                             <div className="topic-info">
                                 <h3>
-                                    <Link href="#">{item.name}</Link>
+                                    <Link to={`/topic/${item.id}`}>{item.name}</Link>
                                 </h3>
                                 <p>
                                     Level: <span className="level medium">Medium</span>

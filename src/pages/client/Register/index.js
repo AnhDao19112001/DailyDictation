@@ -4,7 +4,6 @@ import { createUser } from "../../../services/userService";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 const passwordRegex = /^(?=.*[A-Z])[A-Za-z\d]{6,}$/;
 
 const Register = () => {
@@ -12,15 +11,12 @@ const Register = () => {
     const navigate = useNavigate();
     const onSubmit = async (data) => {
         try {
-            const { username, email, password, passwordConfirm } = data
-            if (username === "" || email === "" || password === "" || passwordConfirm === "") {
+            const { username, password, passwordConfirm } = data
+            if (username === "" || password === "" || passwordConfirm === "") {
                 toast("Vùi lòng nhập đủ trường !");
                 return;
             }
-            if (!emailRegex.test(email)) {
-                toast("Email không đúng định dạng !");
-                return;
-            }
+
             if (!passwordRegex.test(password)) {
                 toast("Mật khẩu có ít nhất 6 ký tự và 1 chữa in hoa !");
                 return;

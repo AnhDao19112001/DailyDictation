@@ -18,13 +18,12 @@ const ExerciseList = () => {
     useEffect(() => {
         fetchApi();
     }, []);
+
     const handleSearch = (e) => {
         const itemExercise = exercises.filter((item) => {
-            const regex = new RegExp(item.title, 'i');
-            if (regex.test(e.target.value)) {
-                console.log(item);
-            }
-            return regex.test(e.target.value);
+            const regex = new RegExp(e.target.value, 'i');
+
+            return regex.test(item.title);
         })
         if (itemExercise.length) {
             console.log(itemExercise)
