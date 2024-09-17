@@ -1,12 +1,18 @@
-export const checkAuthenClient = (status) => {
+export const authenClientSuccess = (status) => {
     return {
-        type: "CHECK_AUTHEN_CLIENT",
+        type: "SUCCESS",
         status: status
     }
 }
-export const checkAuthenAdmin = (status) => {
+export const authenClientFailure = (status) => {
     return {
-        type: "CHECK_AUTHEN_ADMIN",
+        type: "FAILURE",
+        status: status
+    }
+}
+export const authenAdminSuccess = (status) => {
+    return {
+        type: "SUCCESS",
         status: status
     }
 }

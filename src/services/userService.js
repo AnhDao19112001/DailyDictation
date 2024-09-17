@@ -1,6 +1,6 @@
 import { get, post } from "../utils";
 export const getUser = async (data) => {
-    const result = await get(`users?email=${data.email}&password=${data.password}`);
+    const result = await post(`users?username=${data.username}&password=${data.password}`);
     return result;
 }
 export const getUserById = async (id) => {
@@ -20,8 +20,8 @@ export const getUserByToken = async (token) => {
         return [];
     }
 }
-export const checkEmailExist = async (data) => {
-    const result = await get(`users?email=${data.email}`);
+export const checkUserExist = async (data) => {
+    const result = await get(`users?email=${data.username}`);
     return result;
 }
 export const createUser = async (option) => {

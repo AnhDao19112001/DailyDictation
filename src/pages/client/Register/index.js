@@ -56,18 +56,7 @@ const Register = () => {
                         required
                     />
                 </div>
-                <div className="input-group">
-                    <label htmlFor="register-email">
-                        <i className="fas fa-envelope" /> Email
-                    </label>
-                    <input
-                        type="email"
-                        id="register-email"
-                        placeholder="Enter your email"
-                        {...register("email")}
-                        required
-                    />
-                </div>
+
                 <div className="input-group">
                     <label htmlFor="register-password">
                         <i className="fas fa-lock" /> Password

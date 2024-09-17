@@ -1,13 +1,13 @@
 import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
-import { checkEmailExist, getUser } from "../../../services/userService"
+import { checkUserExist, getUser } from "../../../services/userService"
 import { ToastContainer, toast } from 'react-toastify'
-import { checkAuthenClient } from "../../../actions/authentication"
+import { authenClientFailure, authenClientSuccess } from "../../../actions/authentication"
 import { getCookie, setCookie } from "../../../helpers/cookie"
 import { useDispatch } from "react-redux";
 import 'react-toastify/dist/ReactToastify.css';
 import { useEffect } from "react"
-const emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+// const emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
 const Login = () => {
     const { register, handleSubmit } = useForm();
@@ -20,31 +20,24 @@ const Login = () => {
     }, [])
     const onSubmit = async (data) => {
         try {
-            if (data.email === "") {
-                toast("Vui lòng nhập email !");
+            if (data.username === "") {
+                toast("Vui lòng nhập tên !");
                 return;
             }
-            if (!emailRegex.test(data.email)) {
-                toast("Email không đúng định dạng !");
-                return;
-            }
+
 
             const result = await getUser(data);
-            const emailExist = await checkEmailExist(data);
-            if (emailExist.length && !result.length) {
-                toast("Mật khẩu không chính xác !");
-                return;
-            }
-
-            if (!result.length) {
+            const userExist = await checkUserExist(data);
+            if (userExist.length && !result.length) {
                 toast("Tài khoản không tồn tại !");
                 return;
             }
             if (result.length) {
-                dispatch(checkAuthenClient(result[0].token));
-                setCookie("token", result[0].token, 1000);
-                setCookie("id", result[0].id)
+                dispatch(authenClientSuccess(result[0].token));
+                setCookie("token", result[0].token);
                 navigate("/")
+            } else {
+                dispatch(authenClientFailure());
             }
         } catch (error) {
             navigate("/login")
@@ -56,14 +49,14 @@ const Login = () => {
             <form className="form login-form active" id="login-form" onSubmit={handleSubmit(onSubmit)}>
                 <h2>Login</h2>
                 <div className="input-group">
-                    <label htmlFor="login-email">
-                        <i className="fa-solid fa-envelope"></i> Emai
+                    <label htmlFor="login-username">
+                        <i className="fa-solid fa-user"></i> Username
                     </label>
                     <input
                         type="text"
-                        id="login-email"
+                        id="login-username"
                         placeholder="Enter your email"
-                        {...register("email")}
+                        {...register("username")}
                         required
                     />
                 </div>
