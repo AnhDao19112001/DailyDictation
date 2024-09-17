@@ -19,7 +19,7 @@ export const authenReducerClient = (state = initialValueClient, action) => {
         return state;
     }
 }
-export const authenReducerAdmin = (state, action) => {
+export const authenReducerAdmin = (state = "", action) => {
     if (action.type === "CHECK_AUTHEN_ADMIN") {
         return action.status;
     } else {

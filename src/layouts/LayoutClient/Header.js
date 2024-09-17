@@ -1,20 +1,14 @@
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import { getUserById } from "../../services/userService";
-import { getCookie, deleteAllCookies } from "../../helpers/cookie";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteAllCookies } from "../../helpers/cookie";
+import { authenClientFailure } from "../../actions/authentication";
 const Header = () => {
-    const authen = useSelector((state) => state.authenReducerClient);
-    const [user, setUser] = useState({});
-    const fetchApi = async () => {
-        const dataUser = await getUserById(getCookie("id"));
-        setUser(dataUser[0]);
-    }
-    useEffect(() => {
-        fetchApi();
-    }, [])
+    const { isAuthenticated, user } = useSelector((state) => state.authenReducerClient);
+    const dispatch = useDispatch();
+    console.log(isAuthenticated, user);
     const handleLogout = () => {
         deleteAllCookies();
+        dispatch(authenClientFailure());
     }
     return (
         <header className="header">
@@ -41,7 +35,7 @@ const Header = () => {
                 </nav>
                 <div className="login-nav">
                     {
-                        authen ? (
+                        isAuthenticated ? (
                             <div className="info-user">
                                 <Link to="/user/info" className="login-btn">
                                     <i className="fa-solid fa-user"></i>{user ? user.username : ""}
