@@ -13,41 +13,21 @@ const Login = () => {
     const { register, handleSubmit } = useForm();
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { isAuthenticated } = useSelector(state => state.authenReducerClient)
+    const { isAuthenticated } = useSelector(state => state.authenReducerClient)  
     useEffect(() => {
         if (isAuthenticated) {
             navigate('/')
         }
     }, [])
     const onSubmit = async (data) => {
-        try {
-            if (data.username === "") {
-                toast("Vui lòng nhập tên !");
-                return;
-            }
-
-
-            const result = await getUser(data);
-            const userExist = await checkUserExist(data);
-            if (userExist.length && !result.length) {
-                toast("Tài khoản không tồn tại !");
-                return;
-            }
-            if (result.length) {
-                dispatch(authenClientSuccess(result[0]));
-                setCookie("token", result[0].token);
-                navigate("/")
-            } else {
-                dispatch(authenClientFailure());
-            }
-        } catch (error) {
-            navigate("/login")
-        }
+        const result = await getUser(data);
+        console.log(result);
     }
+    
     return (
         <>
             <ToastContainer />
-            <form className="form login-form active" id="login-form" onSubmit={handleSubmit(onSubmit)}>
+            <form method="POST" className="form login-form active" id="login-form" onSubmit={handleSubmit(onSubmit)}>
                 <h2>Login</h2>
                 <div className="input-group">
                     <label htmlFor="login-username">

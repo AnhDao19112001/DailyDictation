@@ -21,10 +21,10 @@ const Register = () => {
                 toast("Mật khẩu có ít nhất 6 ký tự và 1 chữa in hoa !");
                 return;
             }
-            if (password !== passwordConfirm) {
-                toast("Mật khẩu không khớp !");
-                return;
-            }
+            // if (password !== passwordConfirm) {
+            //     toast("Mật khẩu không khớp !");
+            //     return;
+            // }
 
             delete data.passwordConfirm;
             data.dateJoined = new Date();
@@ -65,7 +65,7 @@ const Register = () => {
                         required
                     />
                 </div>
-                <div className="input-group">
+                {/* <div className="input-group">
                     <label htmlFor="register-confirm-password">
                         <i className="fas fa-lock" /> Confirm Password
                     </label>
@@ -76,7 +76,7 @@ const Register = () => {
                         {...register("passwordConfirm")}
                         required
                     />
-                </div>
+                </div> */}
                 <button type="submit" className="btn">
                     Register
                 </button>

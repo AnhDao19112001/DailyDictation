@@ -1,16 +1,19 @@
-const DOMAIN = "http://localhost:8080/"
+const DOMAIN = "http://localhost:8000/api/"
 
 export const get = async (path) => {
     const response = await fetch(DOMAIN + path);
     const result = await response.json();
     return result;
 }
-export const post = async (path, option) => {
+const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+export const post = async (path, option, token) => {
     const response = await fetch(DOMAIN + path, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
             // 'Content-Type': 'application/x-www-form-urlencoded',
+            "X-CSRF-TOKEN": csrfToken,
+            'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify(option)
     });

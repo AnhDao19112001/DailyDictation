@@ -1,7 +1,12 @@
 import { get, post } from "../utils";
+import "core-js/stable/atob";
 export const getUser = async (data) => {
-    const result = await post(`login`, data);
-    return result;
+    try {
+        const result = await post(`login`, data);
+        return result;
+    } catch (error) {
+        throw error;
+    }
 }
 export const getUserById = async (id) => {
     if (id !== "") {
