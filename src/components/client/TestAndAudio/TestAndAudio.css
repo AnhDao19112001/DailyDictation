@@ -58,6 +58,12 @@
     margin-bottom: 20px;
 }
 
+.audio-container .quantity-exercise {
+    margin-left: 8px;
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
 /* Audio Player Styles */
 .audio-container {
     background-color: #f9f9f9;
@@ -90,17 +96,53 @@
 .waveform {
     flex-grow: 1;
     height: 50px;
-    background-color: #eee;
+    position: relative;
+    z-index: 1;
 }
 
-.speed-button {
+/* .speed-button {
     background-color: #f1f1f1;
     border: 1px solid #ddd;
     border-radius: 4px;
     padding: 5px 15px;
     margin-left: 20px;
     cursor: pointer;
+    position: relative;
+} */
+
+.speed-list>ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    position: relative;
 }
+
+.speed-list li {
+    background-color: #f1f1f1;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 2px 12px;
+    cursor: pointer;
+}
+
+.speed-list>ul>ul {
+    z-index: 2;
+}
+
+.speed-list>ul>ul li {
+    width: 55px;
+    text-align: center;
+}
+
+.speed-show {
+    list-style: none;
+    position: absolute;
+    right: 0;
+}
+
+/* 
+.speed-list li:first-child {
+} */
 
 .input-container {
     display: flex;
@@ -168,6 +210,7 @@ textarea {
 /* Tips and Links Section */
 .tips-and-links {
     margin-top: 30px;
+    margin-bottom: 32px;
 }
 
 .tip {
@@ -181,6 +224,7 @@ textarea {
     color: #555;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
+
 
 .tip i {
     color: #ffc107;
@@ -282,6 +326,11 @@ textarea {
         width: 100%;
         text-align: center;
     }
+
+}
+
+.back-button {
+    margin-right: 8px;
 }
 
 /* Modal */
@@ -332,8 +381,8 @@ th {
 
 .modal-setting .custom-select {
     display: block;
-    width: 110px;
-    text-align: center;
+    text-align: start;
+    width: 140px;
     padding: 0.375rem 1.75rem 0.375rem 0.75rem;
     font-size: 1rem;
     font-weight: 400;
@@ -358,3 +407,9 @@ th {
 }
 
 /* Modal end */
+
+
+.ReactModalPortal {
+    position: relative;
+    z-index: 2;
+}

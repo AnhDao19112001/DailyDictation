@@ -4,10 +4,10 @@ export const getExerciseByTopicId = async (topicId, limit = 0) => {
     if (limit) {
         query = `_limit=${limit}`
     }
-    const result = get(`exercise?topicId=${topicId}&${query}`);
+    const result = await get(`exercise?topicId=${topicId}&${query}`);
     return result;
 }
 export const getExerciseById = async (id) => {
-    const result = get(`exercise?id=${id}`);
+    const result = await get(`exercise?id=${id}`);
     return result;
 }

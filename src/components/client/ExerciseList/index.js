@@ -60,7 +60,6 @@ const ExerciseList = () => {
                                     </li>
                                 ))
                         }
-
                     </ul>
                 </main>
             </div>
