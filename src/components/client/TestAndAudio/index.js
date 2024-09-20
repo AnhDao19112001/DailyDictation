@@ -41,10 +41,10 @@ const TestAndAudio = () => {
     const [isPlaying, setIsPlaying] = useState(false);
     const [playbackRate, setPlaybackRate] = useState(1);
     const [userInteracted, setUserInteracted] = useState(false);
+    const [maxRepeat, setMaxRepeat] = useState(3);
     const handleUserInteraction = () => {
         setUserInteracted(true); // Đánh dấu đã có tương tác người dùng
     };
-    console.log(userInteracted);
     useEffect(() => {
         fetchApi();
         wavesurfer.current = WaveSurfer.create({
@@ -52,7 +52,7 @@ const TestAndAudio = () => {
             waveColor: '#ddd',
             progressColor: '#ff5500',
             barWidth: 2,
-            height: 56,
+            height: 54,
             muted: true
         });
 
@@ -60,6 +60,7 @@ const TestAndAudio = () => {
         wavesurfer.current.load(test);
 
         wavesurfer.current.setPlaybackRate(playbackRate);
+
 
         // Dọn dẹp sau khi component bị hủy
         return () => wavesurfer.current.destroy();
@@ -87,7 +88,6 @@ const TestAndAudio = () => {
                         <h1>{exercise.title} (Listen and Type)</h1>
                         <div className="setting" onClick={openModal}>
                             <i className="fa-solid fa-gear"></i>
-                            Setting
                         </div>
                     </div>
                     <main>
@@ -100,6 +100,8 @@ const TestAndAudio = () => {
                             setIsPlaying={setIsPlaying}
                             handleUserInteraction={handleUserInteraction}
                             userInteracted={userInteracted}
+                            maxRepeat={maxRepeat}
+                            setMaxRepeat={setMaxRepeat}
                         />
                     </main>
                     <section className="tips-and-links">
@@ -128,7 +130,6 @@ const TestAndAudio = () => {
                     </section>
                 </div>
             </main>
-
         </>
     )
 }

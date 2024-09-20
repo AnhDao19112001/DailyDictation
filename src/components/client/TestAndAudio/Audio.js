@@ -7,9 +7,7 @@ const Audio = (props) => {
     const speed = useRef(null);
     const handleShowSpeed = () => {
         setShowSpeed(!showSpeed);
-        console.log(showSpeed)
     }
-    console.log(isPlaying);
     const handlePlayPause = () => {
         setIsPlaying(!isPlaying);
         wavesurfer.current.playPause();
@@ -20,11 +18,16 @@ const Audio = (props) => {
         wavesurfer.current.setPlaybackRate(newSpeed);
     };
     useEffect(() => {
-        document.addEventListener("click", (e) => {
+        const handleCloseSpeedList = (e) => {
             if (!speed.current.contains(e.target)) {
                 setShowSpeed(false)
             }
-        })
+        }
+        window.addEventListener("click", handleCloseSpeedList)
+        return () => {
+            // Cleanup: xóa event listener khi component unmount
+            window.removeEventListener('click', handleCloseSpeedList);
+        };
     }, [])
     return (
         <>
