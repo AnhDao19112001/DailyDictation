@@ -11,8 +11,8 @@ const Register = () => {
     const navigate = useNavigate();
     const onSubmit = async (data) => {
         try {
-            const { username, password, passwordConfirm } = data
-            if (username === "" || password === "" || passwordConfirm === "") {
+            const { username, password } = data
+            if (username === "" || password === "") {
                 toast("Vùi lòng nhập đủ trường !");
                 return;
             }
@@ -26,10 +26,12 @@ const Register = () => {
             //     return;
             // }
 
-            delete data.passwordConfirm;
-            data.dateJoined = new Date();
-            await createUser(data);
-            console.log(data);
+            // delete data.passwordConfirm;
+            // data.dateJoined = new Date();
+            data.dob="2001-11-19"
+            data.bio="hello bro"
+            const result = await createUser(data);
+            console.log(result);
             navigate("/login");
         } catch (error) {
             navigate("/register")

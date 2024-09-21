@@ -1,4 +1,4 @@
-import { get, post } from "../utils";
+import { get, post, postRegister } from "../utils";
 import "core-js/stable/atob";
 export const getUser = async (data) => {
     try {
@@ -29,7 +29,9 @@ export const checkUserExist = async (data) => {
     const result = await get(`users?email=${data.username}`);
     return result;
 }
-export const createUser = async (option) => {
-    const result = await post(`register`, option);
+export const createUser = async (data) => {
+    const result = await postRegister(`register`, data);
+    console.log(result);
+    
     return result;
 }

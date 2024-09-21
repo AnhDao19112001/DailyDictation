@@ -1,12 +1,12 @@
 const DOMAIN = "http://localhost:8000/api/"
-
+const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 export const get = async (path) => {
     const response = await fetch(DOMAIN + path);
     const result = await response.json();
     return result;
 }
-const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-export const post = async (path, option, token) => {
+export const post = async (path, option) => {  
+    const token = localStorage.getItem("token");
     const response = await fetch(DOMAIN + path, {
         method: "POST",
         headers: {
@@ -17,6 +17,21 @@ export const post = async (path, option, token) => {
         },
         body: JSON.stringify(option)
     });
+    const result = await response.json();
+    return result;
+}
+export const postRegister = async (path, option) => {
+    const response = await fetch(DOMAIN + path, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRF-TOKEN": csrfToken,
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: JSON.stringify(option)
+    });
+    console.log(response);
+    
     const result = await response.json();
     return result;
 }

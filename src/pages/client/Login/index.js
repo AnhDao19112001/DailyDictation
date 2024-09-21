@@ -20,8 +20,18 @@ const Login = () => {
         }
     }, [])
     const onSubmit = async (data) => {
-        const result = await getUser(data);
-        console.log(result);
+        try {
+            if (data.username === "") {
+                toast("Vui lòng nhập tên !");
+                return;
+            }
+
+            const result = await getUser(data);
+            dispatch(authenClientSuccess(result));
+            navigate("/")
+        } catch (error) {
+            navigate("/login")
+        }
     }
     
     return (

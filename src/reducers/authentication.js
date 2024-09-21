@@ -3,6 +3,7 @@ const initialValueClient = {
     user: null,
 }
 export const authenReducerClient = (state = initialValueClient, action) => {
+    console.log(action.status);
     if (action.type === "SUCCESS") {
         return {
             ...state,

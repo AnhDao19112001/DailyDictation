@@ -4,6 +4,8 @@ import { deleteAllCookies } from "../../helpers/cookie";
 import { authenClientFailure } from "../../actions/authentication";
 const Header = () => {
     const { isAuthenticated, user } = useSelector((state) => state.authenReducerClient);
+    console.log(user);
+    
     const dispatch = useDispatch();
     const handleLogout = () => {
         deleteAllCookies();
@@ -37,7 +39,7 @@ const Header = () => {
                         isAuthenticated ? (
                             <div className="info-user">
                                 <Link to="/user/info" className="login-btn">
-                                    <i className="fa-solid fa-user"></i>{user ? user.username : ""}
+                                    <i className="fa-solid fa-user"></i>{user ? user.user.username : ""}
                                 </Link>
                                 <div className="drop-menu">
                                     <Link to="/user/info">User info</Link>
