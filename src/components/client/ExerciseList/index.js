@@ -11,8 +11,11 @@ const ExerciseList = () => {
     const fetchApi = async () => {
         const topic = await getTopicById(idTopic);
         const exercises = await getExerciseByTopicId(idTopic);
-        setTopic(topic[0]);
-        setExercises(exercises);
+        console.log(topic);
+        console.log(exercises);
+
+        setTopic(topic.topics);
+        setExercises(exercises.exercises);
     }
 
     useEffect(() => {

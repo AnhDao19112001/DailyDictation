@@ -1,16 +1,27 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteAllCookies } from "../../helpers/cookie";
+import { deleteCookie, getCookie } from "../../helpers/cookie";
 import { authenClientFailure } from "../../actions/authentication";
+import { useEffect, useState } from "react";
+import { getUserById } from "../../services/userService";
 const Header = () => {
-    const { isAuthenticated, user } = useSelector((state) => state.authenReducerClient);
-    console.log(user);
-    
+    const auth = useSelector((state) => state.authenReducerClient);
     const dispatch = useDispatch();
     const handleLogout = () => {
-        deleteAllCookies();
-        dispatch(authenClientFailure());
+        deleteCookie("id");
+        localStorage.removeItem('token');
+        dispatch(authenClientFailure(""));
     }
+    const [user, setUser] = useState({});
+    const fetchApi = async () => {
+        const getUser = await getUserById(getCookie("id"));
+        setUser(getUser.users);
+    }
+    useEffect(() => {
+        if (auth) {
+            fetchApi();
+        }
+    }, [])
     return (
         <header className="header">
             <div className="container">
@@ -36,14 +47,14 @@ const Header = () => {
                 </nav>
                 <div className="login-nav">
                     {
-                        isAuthenticated ? (
+                        auth ? (
                             <div className="info-user">
                                 <Link to="/user/info" className="login-btn">
-                                    <i className="fa-solid fa-user"></i>{user ? user.user.username : ""}
+                                    <i className="fa-solid fa-user"></i>{user ? user.username : ""}
                                 </Link>
                                 <div className="drop-menu">
                                     <Link to="/user/info">User info</Link>
-                                    <a href="/" onClick={handleLogout}>Log out</a>
+                                    <Link to="/" onClick={handleLogout}>Log out</Link>
                                 </div>
                             </div>
                         ) : (

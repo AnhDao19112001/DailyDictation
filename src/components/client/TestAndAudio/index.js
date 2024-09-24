@@ -30,6 +30,9 @@ const TestAndAudio = () => {
         setTopic(topic[0]);
         const tip = await getTipByIdExercise(exercise[0].id);
         setTip(tip);
+        console.log(exercise);
+        console.log(topic);
+        console.log(tip)
     }
     // fetch data
 

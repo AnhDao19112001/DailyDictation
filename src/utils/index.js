@@ -5,7 +5,7 @@ export const get = async (path) => {
     const result = await response.json();
     return result;
 }
-export const post = async (path, option) => {  
+export const postLogin = async (path, option) => {
     const token = localStorage.getItem("token");
     const response = await fetch(DOMAIN + path, {
         method: "POST",
@@ -18,6 +18,7 @@ export const post = async (path, option) => {
         body: JSON.stringify(option)
     });
     const result = await response.json();
+
     return result;
 }
 export const postRegister = async (path, option) => {
@@ -31,7 +32,7 @@ export const postRegister = async (path, option) => {
         body: JSON.stringify(option)
     });
     console.log(response);
-    
+
     const result = await response.json();
     return result;
 }

@@ -1,8 +1,11 @@
-import { get, post, postRegister } from "../utils";
+import { get, post, postLogin, postRegister } from "../utils";
 import "core-js/stable/atob";
 export const getUser = async (data) => {
     try {
-        const result = await post(`login`, data);
+        const result = await postLogin(`login`, data);
+        if (result.token) {
+            localStorage.setItem("token", result.token);
+        }
         return result;
     } catch (error) {
         throw error;
@@ -32,6 +35,6 @@ export const checkUserExist = async (data) => {
 export const createUser = async (data) => {
     const result = await postRegister(`register`, data);
     console.log(result);
-    
+
     return result;
 }

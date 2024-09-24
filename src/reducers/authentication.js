@@ -1,22 +1,10 @@
-const initialValueClient = {
-    isAuthenticated: false,
-    user: null,
-}
-export const authenReducerClient = (state = initialValueClient, action) => {
-    console.log(action.status);
+const initialValueClient = localStorage.getItem("token")
+export const authenReducerClient = (state = initialValueClient || "", action) => {
     if (action.type === "SUCCESS") {
-        return {
-            ...state,
-            isAuthenticated: true,
-            user: action.status
-        };
+        return action.status;
     }
     else if (action.type === "FAILURE") {
-        return {
-            ...state,
-            isAuthenticated: false,
-            user: null
-        }
+        return action.status;
     }
     else {
         return state;

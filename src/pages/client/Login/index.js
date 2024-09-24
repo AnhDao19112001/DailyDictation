@@ -13,7 +13,7 @@ const Login = () => {
     const { register, handleSubmit } = useForm();
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { isAuthenticated } = useSelector(state => state.authenReducerClient)  
+    const isAuthenticated = useSelector(state => state.authenReducerClient)
     useEffect(() => {
         if (isAuthenticated) {
             navigate('/')
@@ -25,15 +25,20 @@ const Login = () => {
                 toast("Vui lòng nhập tên !");
                 return;
             }
+            if (data.password === "") {
+                toast("Vui lòng nhập mật khẩu !");
+                return;
+            }
 
             const result = await getUser(data);
-            dispatch(authenClientSuccess(result));
+            dispatch(authenClientSuccess(result.token));
+            setCookie("id", result.user.id, 365)
             navigate("/")
         } catch (error) {
             navigate("/login")
         }
     }
-    
+
     return (
         <>
             <ToastContainer />
