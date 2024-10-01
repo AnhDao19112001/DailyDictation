@@ -11,8 +11,8 @@ const Register = () => {
     const navigate = useNavigate();
     const onSubmit = async (data) => {
         try {
-            const { username, password } = data
-            if (username === "" || password === "") {
+            const { username, password, passwordConfirm } = data
+            if (username === "" || password === "" || passwordConfirm === "") {
                 toast("Vùi lòng nhập đủ trường !");
                 return;
             }
@@ -21,15 +21,14 @@ const Register = () => {
                 toast("Mật khẩu có ít nhất 6 ký tự và 1 chữa in hoa !");
                 return;
             }
-            // if (password !== passwordConfirm) {
-            //     toast("Mật khẩu không khớp !");
-            //     return;
-            // }
+            if (password !== passwordConfirm) {
+                toast("Mật khẩu không khớp !");
+                return;
+            }
 
-            // delete data.passwordConfirm;
-            // data.dateJoined = new Date();
-            data.dob="2001-11-19"
-            data.bio="hello bro"
+            delete data.passwordConfirm;
+            data.dob = "2001-11-19"
+            data.bio = "hello bro"
             const result = await createUser(data);
             console.log(result);
             navigate("/login");
@@ -67,7 +66,7 @@ const Register = () => {
                         required
                     />
                 </div>
-                {/* <div className="input-group">
+                <div className="input-group">
                     <label htmlFor="register-confirm-password">
                         <i className="fas fa-lock" /> Confirm Password
                     </label>
@@ -78,7 +77,7 @@ const Register = () => {
                         {...register("passwordConfirm")}
                         required
                     />
-                </div> */}
+                </div>
                 <button type="submit" className="btn">
                     Register
                 </button>

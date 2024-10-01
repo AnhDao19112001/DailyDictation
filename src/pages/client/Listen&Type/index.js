@@ -7,4 +7,4 @@ const ListenAndType = () => {
         </>
     )
 }
-export default ListenAndType
+export default ListenAndType;

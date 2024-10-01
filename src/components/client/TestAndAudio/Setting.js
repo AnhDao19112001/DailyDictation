@@ -1,18 +1,36 @@
-import { useState } from 'react';
-import { useEffect } from 'react';
 import Modal from 'react-modal';
 Modal.setAppElement('#root');
-const Setting = (prop) => {
+const listReplayKey = [
+    {
+        key: "Control",
+        value: "Ctrl"
+    },
+    {
+        key: "Shift",
+        value: "Shift"
+    },
+    {
+        key: "Alt",
+        value: "Alt"
+    }
+]
+const listTimesReplay = [0, 1, 2, 3, 4, 5, 6, 7, 8, 8, 10];
+const listTimeBetweenReplay = [0.5, 1, 1.5, 2, 2.5, 3];
+
+const Setting = (props) => {
     const {
         modalIsOpen,
-        setModal,
-        wavesurfer,
-        isPlaying,
+        handleModal,
+        keyReplay,
+        setKeyReplay,
+        setPlaybackCount,
+        setCountPlayback,
+        playbackCount,
+        waveSurferRef,
         setIsPlaying,
-        maxRepeat,
-        setMaxRepeat
-    } = prop;
-    const [replayKey, setReplayKey] = useState("Control");
+        setTimeBetweenReplay,
+        timeBetweenReplay
+    } = props;
     const customStyles = {
         content: {
             top: '40%',
@@ -25,42 +43,25 @@ const Setting = (prop) => {
             backgrounf: "#fff"
         },
     };
-    const closeModal = () => {
-        setModal(false);
+    const handleGetKeyReplay = (e) => {
+        setKeyReplay(e.target.value);
     }
-    const getReplayKey = (e) => {
-        setReplayKey(e.target.value);
+    const handleGetTimesReplay = (e) => {
+        const number = parseInt(e.target.value);
+        setPlaybackCount(number);
+        setCountPlayback(1);
+        waveSurferRef.current.seekTo(0);
+        waveSurferRef.current.pause();
+        setIsPlaying(false);
     }
-    const getTimesReplay = (e) => {
-        console.log(e.target.value)
-        setMaxRepeat(e.target.value)
+    const handleGetTimeBetweenReplay = (e) => {
+        const number = parseFloat(e.target.value);
+        setTimeBetweenReplay(number * 1000);
+        setCountPlayback(1);
+        waveSurferRef.current.seekTo(0);
+        waveSurferRef.current.pause();
+        setIsPlaying(false);
     }
-
-    useEffect(() => {
-        const handleReplayKey = (e) => {
-            if (replayKey === e.key) {
-                setIsPlaying(true);
-                wavesurfer.current.seekTo(0);
-                wavesurfer.current.play();
-            }
-            else if (replayKey === e.key) {
-                setIsPlaying(true);
-                wavesurfer.current.seekTo(0);
-                wavesurfer.current.play();
-            }
-            else if (replayKey === e.key) {
-                setIsPlaying(true);
-                wavesurfer.current.seekTo(0);
-                wavesurfer.current.play();
-            }
-        }
-        window.addEventListener('keydown', handleReplayKey);
-        return () => {
-            // Cleanup: xóa event listener khi component unmount
-            window.removeEventListener('keydown', handleReplayKey);
-        };
-    }, [isPlaying, replayKey])
-
     return (
         <>
             <Modal
@@ -74,7 +75,7 @@ const Setting = (prop) => {
                             <i className="fa-solid fa-gear"></i>
                             Setting
                         </h4>
-                        <button onClick={closeModal}>
+                        <button onClick={handleModal}>
                             <i className="fa-solid fa-xmark"></i>
                         </button>
                     </div>
@@ -83,52 +84,49 @@ const Setting = (prop) => {
                             <tr>
                                 <td><b>Replay Key</b></td>
                                 <th>
-                                    <select className="form-select custom-select" onChange={getReplayKey} value={"Control"}>
-                                        <option value={"Control"}>Ctrl</option>
-                                        <option value={"Shift"}>Shift</option>
-                                        <option value={"Alt"}>Alt</option>
-                                        <option value={"Ctrl Shift"}>Ctrl + Shift</option>
-                                        <option value={"Ctrl Alt"}>Ctrl + Alt</option>
-                                        <option value={"Ctrl Space"}>Ctrl + Space</option>
-                                        <option value={"Ctrl b"}>Ctrl + B</option>
+                                    <select className="form-select custom-select" onChange={handleGetKeyReplay} value={keyReplay} >
+                                        {
+                                            listReplayKey.map((item, index) => (
+                                                <option value={item.key} key={index}>{item.value}</option>
+                                            ))
+                                        }
                                     </select>
                                 </th>
                             </tr>
                             <tr>
                                 <td><b>Auto Replay</b></td>
                                 <th>
-                                    <select className="form-select custom-select" onChange={getTimesReplay} value={0}>
-                                        <option value={0}>No</option>
-                                        <option value={1}>1 times</option>
-                                        <option value={2}>2 times</option>
-                                        <option value={3} selected={true}>3 times</option>
-                                        <option value={4}>4 times</option>
-                                        <option value={5}>5 times</option>
-                                        <option value={6}>6 times</option>
-                                        <option value={7}>7 times</option>
-                                        <option value={8}>8 times</option>
-                                        <option value={9}>9 times</option>
-                                        <option value={10}>10 times</option>
+                                    <select className="form-select custom-select" value={playbackCount} onChange={handleGetTimesReplay}>
+                                        {
+                                            listTimesReplay.map((item, index) => (
+                                                <option value={item} key={index}>
+                                                    {
+                                                        item === 0 ? "No" : (item + " times")
+                                                    }
+                                                </option>
+                                            ))
+                                        }
                                     </select>
                                 </th>
                             </tr>
                             <tr>
                                 <td><b>Time between replays</b></td>
                                 <th>
-                                    <select className="form-select custom-select" value={1}>
-                                        <option value={0.5}>0.5 seconds</option>
-                                        <option value={1}>1 seconds</option>
-                                        <option value={1.5}>1.5 seconds</option>
-                                        <option value={2}>2 seconds</option>
-                                        <option value={2.5}>2.5 seconds</option>
-                                        <option value={3}>3 seconds</option>
+                                    <select className="form-select custom-select" value={timeBetweenReplay / 1000} onChange={handleGetTimeBetweenReplay}>
+                                        {
+                                            listTimeBetweenReplay.map((item, index) => (
+                                                <option value={item} key={index}>
+                                                    {item} seconds
+                                                </option>
+                                            ))
+                                        }
                                     </select>
                                 </th>
                             </tr>
                             <tr>
                                 <td><b>Always show explanation</b></td>
                                 <th>
-                                    <select className="form-select custom-select" value={1}>
+                                    <select className="form-select custom-select" defaultValue={1}>
                                         <option value={1}>Yes</option>
                                         <option value={2}>No</option>
                                     </select>
@@ -141,5 +139,4 @@ const Setting = (prop) => {
         </>
     )
 }
-
 export default Setting;

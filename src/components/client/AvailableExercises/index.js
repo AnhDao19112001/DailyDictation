@@ -8,7 +8,6 @@ const AvailableExercises = () => {
     const fetchApi = async () => {
         let limit = 8;
         const listTopics = await getListTopicByQuantity(limit);
-        console.log(listTopics);
         for (const topic of listTopics.topics) {
             const listExercise = await getExerciseByTopicId(topic.id, 5)
             topic.exercises = listExercise.exercises;
@@ -19,14 +18,11 @@ const AvailableExercises = () => {
 
             array.push(listTopics.topics.slice(i, i + limit));
         }
-        console.log(array);
         setAvailableExercises(array);
     }
     useEffect(() => {
         fetchApi();
     }, [])
-    console.log(availableExercises);
-    availableExercises.forEach(item => console.log(item))
     return (
         <section className="available-exercises">
             <div className="container">

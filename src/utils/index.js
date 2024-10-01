@@ -1,3 +1,5 @@
+import { getCookie } from "../helpers/cookie";
+
 const DOMAIN = "http://localhost:8000/api/"
 const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 export const get = async (path) => {
@@ -11,7 +13,6 @@ export const postLogin = async (path, option) => {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            // 'Content-Type': 'application/x-www-form-urlencoded',
             "X-CSRF-TOKEN": csrfToken,
             'Authorization': `Bearer ${token}`
         },
@@ -21,6 +22,42 @@ export const postLogin = async (path, option) => {
 
     return result;
 }
+export const postEndTime = async (path = "end-time") => {
+    const token = localStorage.getItem("token");
+    if (token) {
+        const option = {
+            endTime: new Date(),
+        }
+        await fetch(DOMAIN + path, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-TOKEN": csrfToken,
+                'Authorization': `Bearer ${token}`,
+                body: JSON.stringify(option)
+            },
+        })
+    }
+}
+
+export const postStartTime = async (path = "start-time") => {
+    const token = localStorage.getItem("token");
+    if (token) {
+        const option = {
+            startTime: new Date(),
+        }
+        await fetch(DOMAIN + path, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-TOKEN": csrfToken,
+                'Authorization': `Bearer ${token}`,
+                body: JSON.stringify(option)
+            },
+        })
+    }
+}
+
 export const postRegister = async (path, option) => {
     const response = await fetch(DOMAIN + path, {
         method: "POST",
@@ -51,7 +88,6 @@ export const patch = async (path, option) => {
         method: "PATCH",
         headers: {
             "Content-Type": "application/json",
-            // 'Content-Type': 'application/x-www-form-urlencoded',
         },
         body: JSON.stringify(option)
     });

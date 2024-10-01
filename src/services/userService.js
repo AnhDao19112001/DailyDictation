@@ -1,4 +1,4 @@
-import { get, post, postLogin, postRegister } from "../utils";
+import { get, post, postLogin, postRegister, postTest } from "../utils";
 import "core-js/stable/atob";
 export const getUser = async (data) => {
     try {
@@ -38,3 +38,4 @@ export const createUser = async (data) => {
 
     return result;
 }
+

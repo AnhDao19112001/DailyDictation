@@ -180,7 +180,8 @@ textarea {
 }
 
 .check-button,
-.skip-button {
+.skip-button,
+.next-button {
     padding: 12px 25px;
     font-size: 1rem;
     border-radius: 4px;
@@ -189,9 +190,16 @@ textarea {
     transition: background-color 0.3s ease;
 }
 
+.next-button {
+    background-color: #198754;
+    color: #fff;
+    border: 1px solid #ddd;
+}
+
 .check-button {
     background-color: #007bff;
     color: #fff;
+    border: 1px solid #ddd;
 }
 
 .check-button:hover {
@@ -280,7 +288,6 @@ textarea {
 
 .accordion-content {
     padding: 15px;
-    display: none;
     background-color: #fff;
 }
 
@@ -413,4 +420,113 @@ th {
 .ReactModalPortal {
     position: relative;
     z-index: 2;
+}
+
+.translation-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.translation {
+    background: #fff;
+    border: 1px solid #dee2e6;
+    width: 40%;
+    padding: 8px 8px 8px 10px;
+    margin-top: 16px;
+    border-radius: 8px;
+}
+
+.translation .title {
+    margin-top: 4px;
+    margin-bottom: 4px;
+    color: rgba(33, 37, 41, 0.75);
+}
+
+.translation .textVN {
+    margin-bottom: 4px;
+    margin-top: 5px;
+    color: #212529;
+    font-size: 20px;
+}
+
+.answer {
+    font-size: 20px;
+}
+
+.answer .wrong-icon {
+    color: #ffc107;
+    margin-right: 6px;
+}
+
+.answer .true-icon {
+    color: #198754;
+}
+
+.answer .true-answer {
+    font-weight: 600;
+    color: #198754;
+    margin-left: 4px;
+
+}
+
+
+.show-answer {
+    font-size: 18px;
+    margin-top: 8px;
+}
+
+.icon-show-answer {
+    margin-right: 12px;
+}
+
+
+.main .complete-exercise {
+    background: #fff;
+    padding: 45px 30px;
+    border-radius: 4px;
+}
+
+.complete-exercise .title h2 {
+    font-size: 28px;
+    font-weight: 700;
+
+}
+
+.complete-exercise .icon-success {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 100px;
+    color: #198754;
+}
+
+
+.complete-exercise .complete-button-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 16px;
+}
+
+.complete-exercise .complete-button-group .button-complete {
+    margin: 0 4px;
+    padding: 12px;
+    border-radius: 4px;
+    background: #fff;
+    border: 1px solid #ddd;
+    font-size: 20px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+}
+
+.complete-exercise .all-topic {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 16px;
+    font-size: 22px;
+}
+
+.complete-exercise .all-topic a {
+    color: #0d6efd;
 }
