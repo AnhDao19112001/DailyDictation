@@ -42,6 +42,7 @@ export const postEndTime = async (path = "end-time") => {
 
 export const postStartTime = async (path = "start-time") => {
     const token = localStorage.getItem("token");
+    console.log("OK")
     if (token) {
         const option = {
             startTime: new Date(),

@@ -1,6 +1,6 @@
 import "./AvailableExercises.css";
 import { getListTopicByQuantity } from "../../../services/topicService";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { getExerciseByTopicId } from "../../../services/exercisesService";
 import AvailableItem from "./AvailableItem";
 const AvailableExercises = () => {

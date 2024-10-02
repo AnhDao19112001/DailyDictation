@@ -101,6 +101,7 @@ const TestAndAudio = () => {
         setIsPlaying(true);
         waveSurferRef.current.seekTo(0);
         waveSurferRef.current.play();
+        // setCountPlayback(1);
     }
     useEffect(() => {
         if (completEXercise === false) {
@@ -121,18 +122,14 @@ const TestAndAudio = () => {
                     setIsPlaying(false);
                 }
             }
-            if (audio.length) {
-                waveSurferRef.current.on("finish", hanleReplay)
-            }
+            waveSurferRef.current.on("finish", hanleReplay)
 
             return () => {
-                if (audio.length) {
-                    waveSurferRef.current.un('finish', hanleReplay); // Cleanup event listener
-                }
+                waveSurferRef.current.un('finish', hanleReplay); // Cleanup event listener
             };
         }
 
-    }, [countPlayback, playbackCount, timeBetweenReplay, completEXercise, idExercise, audio.length]);
+    }, [countPlayback, playbackCount, timeBetweenReplay, completEXercise, idExercise]);
     return (
         <>
 

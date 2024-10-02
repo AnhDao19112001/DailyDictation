@@ -45,14 +45,17 @@ const Setting = (props) => {
     };
     const handleGetKeyReplay = (e) => {
         setKeyReplay(e.target.value);
+        // setIsPlaying(false);
+        // setCountPlayback(1);
+        // waveSurferRef.current.seekTo(0);
+        // waveSurferRef.current.pause();
     }
     const handleGetTimesReplay = (e) => {
         const number = parseInt(e.target.value);
         setPlaybackCount(number);
-        setCountPlayback(1);
-        waveSurferRef.current.seekTo(0);
-        waveSurferRef.current.pause();
         setIsPlaying(false);
+        waveSurferRef.current.pause();
+
     }
     const handleGetTimeBetweenReplay = (e) => {
         const number = parseFloat(e.target.value);
